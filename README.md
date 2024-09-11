@@ -3,7 +3,7 @@
 
 - 🌱 I’m currently learning **javascript**
 
-- 💬 Ask me about **c++**
+- 💬 Ask me about **java**
 
 - 📫 How to reach me rajusharmadata123@gmail.com
 
@@ -24,8 +24,6 @@
 ## 🏆 GitHub Trophies
 ![](https://github-profile-trophy.vercel.app/?username=Rajusharmadata&theme=radical&no-frame=false&no-bg=false&margin-w=4)
 
-### ✍️ Random Dev Quote
-The best way to predict the future is to create it
 
 ### 🔝 Top Contributed Repo
 ![](https://github-contributor-stats.vercel.app/api?username=Rajusharmadata&limit=5&theme=radical&combine_all_yearly_contributions=true)
