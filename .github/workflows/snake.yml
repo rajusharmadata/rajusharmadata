@@ -1,97 +1,38 @@
-name: GitHub Snake Game
-
-
+name: GitHub Pages
 
 on:
-
-  # Schedule the workflow to run daily at midnight UTC
-
-  schedule:
-
-    - cron: "0 0 * * *"
-
-
-
-  # Allow manual triggering of the workflow
-
-  workflow_dispatch:
-
-
-
-  # Trigger the workflow on pushes to the main branch
-
   push:
-
     branches:
-
-      - main
-
-
+      - main  # Set a branch name to trigger deployment
+  pull_request:
 
 jobs:
-
-  generate:
-
-    runs-on: ubuntu-latest
-
-    timeout-minutes: 10
-
-
-
+  deploy:
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
-
-      # Step 1: Checkout the repository
-
-      - name: Checkout Repository
-
-        uses: actions/checkout@v3
-
-
-
-      # Step 2: Generate the snake animations
-
-      - name: Generate GitHub Contributions Snake Animations
-
-        uses: Platane/snk@v3
-
+      - uses: actions/checkout@v3
         with:
+          submodules: true  # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
-          # GitHub username to generate the animation for
-
-          github_user_name: ${{ github.repository_owner }}
-
-
-
-          # Define the output files and their configurations
-
-          outputs: |
-
-            dist/github-snake.svg
-
-            dist/github-snake-dark.svg?palette=github-dark
-
-            dist/ocean.gif?color_snake=orange&color_dots=#bfd6f6,#8dbdff,#64a1f4,#4b91f1,#3c7dd9
-
-        env:
-
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
-
-      # Step 3: Deploy the generated files to the 'output' branch
-
-      - name: Deploy to Output Branch
-
-        uses: peaceiris/actions-gh-pages@v3
-
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
         with:
+          hugo-version: '0.110.0'
 
+      - name: Build
+        run: hugo --minify
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        # If you're changing the branch from main,
+        # also change the `main` in `refs/heads/main`
+        # below accordingly.
+        if: github.ref == 'refs/heads/main'
+        with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-
-          publish_dir: ./dist
-
-          publish_branch: output
-
-          # Optionally, you can set a custom commit message
-
-          commit_message: "Update snake animation [skip ci]"
+          publish_dir: ./public
