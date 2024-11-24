@@ -1,11 +1,11 @@
 <h1 align="center">Hi 👋, I'm Raju</h1>
 <h3 align="center"> i am current learn web development</h3>
 
-- 🌱 I’m currently learning **javascript**
+- 🌱 I’m currently learning **Data structure Algorithms**
 
 - 💬 Ask me about **java**
 
-- 📫 How to reach me rajusharmadata123@gmail.com
+- 📫 How to reach me ** rajusharmadata123@gmail.com **
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
