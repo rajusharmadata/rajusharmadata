@@ -25,7 +25,7 @@
 ```javascript
 const raju = {
     pronouns: "He" | "Him",
-    location: "Aurangabad, Bihar, India 🇮🇳",
+    location: "New Delhi,  India 🇮🇳",
     code: ["JavaScript", "Java", "C++", "C"],
     askMeAbout: ["Web Dev", "DSA", "Problem Solving", "MERN Stack"],
     technologies: {
